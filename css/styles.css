@@ -126,6 +126,61 @@ body::before {
   background: rgba(0, 0, 0, 0.1); 
   z-index: -1; /* Lägger den bakom innehållet */
 }
+.card-img-top {
+  width: 100%;
+  height: 250px; 
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.card-body h5 {
+  font-size: 0.65rem;
+}
+
+.card-body p {
+font-size: 0.75rem;
+max-height: 50px;
+}
+
+.product-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media (min-width: 800px) {
+  .product-card{
+    width: 70%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .product-card {
+    width: 40%;
+  }
+}
+
+#product-description {
+  padding: 10px;
+  text-align: justify;
+  max-width: 100%;
+  margin: auto;
+  overflow-wrap: break-word;
+}
+
+#product-image {
+  max-width: 500px;
+  max-height: 500px;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  padding: 10px;
+}
 
 /*
 Här slutar VÅR kod. 
