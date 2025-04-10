@@ -17,24 +17,68 @@
 </head>
 
 <body>
-
-
-  <!-- Navigation, samma som på index.html -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-      <a class="navbar-brand" href="index.html">Fromm's webbshop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-          <li class="nav-item"><a class="nav-link" href="index.html">Startsida</a></li>
-          <li class="nav-item"><a class="nav-link" href="aboutUs.html">Om Oss</a></li>
-        </ul>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand" href="index.html">Fromm's webbshop</a>
+    <button class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Startsida</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="omOss.html">Om Oss</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" 
+          id="navbarDropdown" 
+          href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Shop</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="index.html">Alla Produkter</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#kundvagnSidebar">
+          <i class="bi-cart-fill me-1"></i>
+          Din Kundvagn
+          <span class="cart-count badge bg-dark text-white ms-1 rounded-pill">0</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="kundvagnSidebar" aria-labelledby="kundvagnSidebarLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="kundvagnSidebarLabel">Varukorg</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Stäng"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column justify-content-between">
+    <div class="text-center">
+      <p>Din varukorg är tom</p>
+    </div>
+    <div>
+      <div class="d-flex justify-content-between fw-bold px-2 mb-2">
+        <span>Totalt:</span>
+        <span class="text-danger">0 kr</span>
+      </div>
+      <div class="d-grid px-2 mb-3">
+        <a href="cart.html" class="btn btn-dark text-white fw-bold">Till kassan</a>
       </div>
     </div>
-  </nav>
+  </div>
+</div>
 
   <!-- Header-->
   <header class="custom-header">
@@ -59,54 +103,11 @@
     <h1 id="product-title" class="card-title"></h1>
     <div id="product-description" class="card-text text-box text-center"></div>
     <div id="product-price" class="text-center py-3"></div>
+    <button id="addToCartBtn" class="btn btn-dark">Lägg till i varukorg</button>
    </div>
   </div>
 </main>
-
-  <hr />
-
-  <h2 class="text-center py-5">Fyll i dina kunduppgifter:</h2>
-
-  <form class="mx-auto px-4 w-75" id="order-form">
-    <div class="mb-3">
-      <label for="name" class="form-label">Namn:</label>
-      <input type="text" class="form-control" id="name" required />
-      <div class="invalid-feedback">Ange ett giltigt namn (2–50 tecken).</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="address" class="form-label">Gatuadress:</label>
-      <input type="text" class="form-control" id="address" required />
-      <div class="invalid-feedback">Ange en giltig gatuadress (2–50 tecken).</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="zipcode" class="form-label">Postnummer:</label>
-      <input type="text" class="form-control" id="zipcode" required />
-      <div class="invalid-feedback">Ange giltigt postnummer, t.ex. 12345.</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="city" class="form-label">Stad:</label>
-      <input type="text" class="form-control" id="city" required />
-      <div class="invalid-feedback">Ange en giltig stad (2–50 tecken).</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="phone" class="form-label">Telefonnummer:</label>
-      <input type="text" class="form-control" id="phone" required />
-      <div class="invalid-feedback">Ange ett giltigt telefonnummer, t.ex. (+46)070-123-45-67.</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="email" class="form-label">E-post:</label>
-      <input type="text" class="form-control" id="email" required />
-      <div class="invalid-feedback">Ange en giltig mejladress (2–50 tecken), måste innehålla @.</div>
-    </div>
-
-    <button type="submit" class="btn btn-dark mt-5 mb-5 w-100">Skicka beställning</button>
-  </form>
-  </main>
+  
 
   <!-- Footer-->
   <footer class="py-1 bg-secondary">
