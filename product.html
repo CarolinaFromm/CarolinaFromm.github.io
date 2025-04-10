@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
           <li class="nav-item"><a class="nav-link" href="index.html">Startsida</a></li>
-          <li class="nav-item"><a class="nav-link" href="omOss.html">Om Oss</a></li>
+          <li class="nav-item"><a class="nav-link" href="aboutUs.html">Om Oss</a></li>
         </ul>
       </div>
     </div>
@@ -44,18 +44,24 @@
     </video>
     <div class="overlay"></div>
     <div class="container text-center text-white">
-      <h1 class="display-4 fw-bolder">Emilina webbshop</h1>
+      <h1 class="display-4 fw-bolder">Fromm's webbshop</h1>
       <p class="lead fw-normal text-white-50 mb-0 fst-italic">
-        För det ska vara roligt att shoppa
+        Klicka hem det du önskar
       </p>
     </div>
   </header>
 
   <!-- Produkt -->
-  <main class="container py-5 text-center"></main>
-  <h1 id="product-title" class="text-center py-3"></h1>
-  <img id="product-image" class="img-fluid mb-4 d-block mx-auto" style="max-width: 400px;" />
-  <p id="product-description" class="text-center py-3"></p>
+<main class="container py-5 text-center">
+  <div class="card mx-auto product-card" style="width: 95%;">
+   <img id="product-image" class="card-img-top img-fluid" alt="Produktbild"/>
+   <div class="card-body">
+    <h1 id="product-title" class="card-title"></h1>
+    <div id="product-description" class="card-text text-box text-center"></div>
+    <div id="product-price" class="text-center py-3"></div>
+   </div>
+  </div>
+</main>
 
   <hr />
 
@@ -106,7 +112,7 @@
   <footer class="py-1 bg-secondary">
     <div class="container">
       <p class="m-0 text-center text-white">
-        Copyright &copy; Carolina Fromms webbshop 2025
+        Copyright &copy; Carolina Fromm's webbshop 2025
       </p>
     </div>
   </footer>
