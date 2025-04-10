@@ -78,21 +78,73 @@ function clearCart() {
   localStorage.removeItem("cartItems");
   renderSidebarCart();
 }
+function renderFullCartSummary() {
+  const summaryContainer = document.getElementById("cart-summary");
+  if (!summaryContainer) return;
+
+  const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  if (cart.length === 0) {
+    summaryContainer.innerHTML = "<p>Din varukorg är tom.</p>";
+    return;
+  }
+
+  let total = 0;
+  const itemRows = cart.map(item => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    return `
+      <div class="card mb-3">
+        <div class="row g-0 align-items-center">
+          <div class="col-md-2">
+            <img src="${item.image}" class="img-fluid rounded-start" alt="${item.name}">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
+              <div>
+                <h5 class="card-title">${item.name}</h5>
+                <p class="card-text mb-1">Pris: ${item.price} kr</p>
+                <p class="card-text mb-0">Antal: ${item.quantity}</p>
+              </div>
+              <div class="text-end fw-bold fs-5">
+                ${itemTotal.toFixed(2)} kr
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  summaryContainer.innerHTML = `
+    ${itemRows}
+    <div class="d-flex justify-content-end fw-bold fs-5">
+      Totalsumma: <span class="text-danger ms-2">${total.toFixed(2)} kr</span>
+    </div>
+  `;
+}
 
 // ========== DOMContentLoaded ==========
 document.addEventListener("DOMContentLoaded", () => {
   renderSidebarCart();
 
-  // ========== API: Lista produkter ==========
-  const productContainer = document.getElementById("product-list");
-  const apiUrl = "https://fakestoreapi.com/products";
+  if (window.location.pathname.includes("cart.html")) {
+    renderFullCartSummary();
+  }
 
-  if (productContainer) {
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(products => {
-        productContainer.innerHTML = "";
-        products.forEach(product => {
+  // ========== API: Lista produkter ==========
+  const productContainer = document.getElementById("product-list"); // hämtar referens till html elementet där varorna ska visas: "product-list"
+  const apiUrl = "https://fakestoreapi.com/products"; // API URL för att hämta varorna
+
+  if (productContainer) { // kontroll och kör vidare om elementet finns
+    fetch(apiUrl) // fetchar och startar en http get request till apiURL
+      .then(response => response.json()) // när det hämtats, tolka svaret som JSON
+      .then(products => {                // därefter går vidare med array objekt från APIt
+        productContainer.innerHTML = ""; // Rensa gamla varor om några finns
+        products.forEach(product => {    // Loopar igenom varje vara och bygger html
+          // Skapas html struktur för alla varor från API
+          // Rad 50 skickar vidare till produktsidan där formuläret finns. Man skickas vidare när man klickat på köp
+          // encodeURI gör att inga specialtecken förstör länken såsom mellanslag åäö m.m.
           const productHTML = `
             <div class="col mb-5">
               <div class="card h-100">
