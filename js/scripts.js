@@ -65,6 +65,10 @@ function updateQuantity(index, change) {
 
   localStorage.setItem("cartItems", JSON.stringify(cart));
   renderSidebarCart();
+
+  if (window.location.pathname.includes("cart.html")) {
+    renderFullCartSummary(); 
+  }
 }
 
 function removeItem(index) {
@@ -90,24 +94,29 @@ function renderFullCartSummary() {
   }
 
   let total = 0;
-  const itemRows = cart.map(item => {
+  const itemRows = cart.map((item, index) => {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
     return `
-      <div class="card mb-3">
+      <div class="card mb-3 cart-card">
         <div class="row g-0 align-items-center">
-          <div class="col-md-2">
+          <div class="col-md-2 d-flex align-items-center justify-content-center">
             <img src="${item.image}" class="img-fluid rounded-start" alt="${item.name}">
           </div>
-          <div class="col-md-10">
-            <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
-              <div>
+          <div class="col-md-8">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <div class="product-info">
                 <h5 class="card-title">${item.name}</h5>
-                <p class="card-text mb-1">Pris: ${item.price} kr</p>
-                <p class="card-text mb-0">Antal: ${item.quantity}</p>
+                <p class="card-text mb-1">Pris: ${item.price} €</p>
+                <p class="card-text mb-1">Antal: ${item.quantity}</p>
+                <div class="btn-group mt-2" role="group">
+                  <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${index}, -1)">-</button>
+                  <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${index}, 1)">+</button>
+                  <button class="btn btn-outline-danger btn-sm" onclick="removeItem(${index})">Ta bort</button>
+                </div>
               </div>
-              <div class="text-end fw-bold fs-5">
-                ${itemTotal.toFixed(2)} kr
+              <div class="price-info">
+                ${itemTotal.toFixed(2)} €
               </div>
             </div>
           </div>
@@ -119,9 +128,10 @@ function renderFullCartSummary() {
   summaryContainer.innerHTML = `
     ${itemRows}
     <div class="d-flex justify-content-end fw-bold fs-5">
-      Totalsumma: <span class="text-danger ms-2">${total.toFixed(2)} kr</span>
+      Totalsumma: <span class="text-danger ms-2">${total.toFixed(2)} €</span>
     </div>
   `;
+  
 }
 
 // ========== DOMContentLoaded ==========
@@ -197,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem("cartItems", JSON.stringify(cart));
-      renderSidebarCart(); // ← Detta funkar nu!
+      renderSidebarCart(); 
     });
   }
 
