@@ -54,7 +54,7 @@ function renderSidebarCart() {
     </div>
   `;
 }
-window.renderSidebarCart = renderSidebarCart; // Gör tillgänglig globalt
+window.renderSidebarCart = renderSidebarCart; 
 
 function updateQuantity(index, change) {
   let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -69,6 +69,7 @@ function updateQuantity(index, change) {
   if (window.location.pathname.includes("cart.html")) {
     renderFullCartSummary(); 
   }
+
 }
 
 function removeItem(index) {
@@ -207,7 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem("cartItems", JSON.stringify(cart));
-      renderSidebarCart(); 
+      renderSidebarCart();
+      alert("Produkten har lagts till i varukorgen!"); 
     });
   }
 
