@@ -139,7 +139,7 @@ function renderFullCartSummary() {
   
 }
 
-// ========== DOMContentLoaded ==========
+// DOMContentLoaded 
 document.addEventListener("DOMContentLoaded", () => {
   renderSidebarCart();
 
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderFullCartSummary();
   }
 
-  // ========== API: Lista produkter ==========
+  // API
   const productContainer = document.getElementById("product-list"); // hämtar referens till html elementet där varorna ska visas: "product-list"
   const apiUrl = "https://fakestoreapi.com/products"; // API URL för att hämta varorna
 
