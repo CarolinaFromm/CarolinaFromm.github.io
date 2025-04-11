@@ -6,7 +6,7 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
-// ========== SIDEBAR CART FUNKTIONER ==========
+// Sidebar funktioner
 function renderSidebarCart() {
   const cartData = JSON.parse(localStorage.getItem("cartItems")) || [];
   const cartCountEl = document.querySelector(".cart-count");
@@ -90,9 +90,13 @@ function renderFullCartSummary() {
   const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
 
   if (cart.length === 0) {
-    summaryContainer.innerHTML = "<p>Din varukorg är tom.</p>";
-    return;
-  }
+    summaryContainer.innerHTML = `
+    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
+      <p style="text-align: center;">Din varukorg är tom.</p>
+    </div>
+  `;
+  return;
+}
 
   let total = 0;
   const itemRows = cart.map((item, index) => {
@@ -179,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(error => console.error("Fel vid hämtning av produkter:", error));
   }
 
-  // ========== PRODUCT.HTML: Visa vald produkt ==========
+   // product.html
   if (window.location.pathname.includes("product.html")) {
     const params = new URLSearchParams(window.location.search);
     const name = params.get('name');
@@ -192,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (description) document.getElementById('product-description').textContent = decodeURIComponent(description);
     if (price) document.getElementById('product-price').textContent = `Pris: ${price} €`;
 
-    // LÄGG TILL I VARUKORG
+    // Lägg till i varukorg
     document.getElementById("addToCartBtn")?.addEventListener("click", () => {
       const title = document.getElementById("product-title").textContent;
       const price = parseFloat(document.getElementById("product-price").textContent.replace(/[^\d.]/g, ""));
@@ -213,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========== FORMULÄRVALIDERING ==========
+  // Formulär
   const form = document.getElementById("order-form");
   if (form) {
     form.addEventListener("submit", function (e) {
