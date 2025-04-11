@@ -49,7 +49,7 @@ function renderSidebarCart() {
       <span class="text-danger">${totalPrice.toFixed(2)} €</span>
     </div>
     <div class="d-grid px-2 mb-2">
-      <a href="cart.html" class="btn btn-dark fw-bold">Till kassan</a>
+      <a href="cart.html" class="btn btn-dark fw-bold">Till Kassan</a>
       <button class="btn btn-outline-danger mt-2" onclick="clearCart()">Töm varukorg</button>
     </div>
   `;
