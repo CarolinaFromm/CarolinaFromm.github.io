@@ -279,7 +279,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (valid) {
         alert("Tack för din beställning!");
+        clearCart();
         form.reset();
+        window.location.href = "index.html";
       }
     });
   }
